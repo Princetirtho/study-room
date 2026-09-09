@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>হোম | স্টাডি রুম</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ========================================
+    হেডার
+    ======================================== -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">📚 স্টাডি রুম</a>
+            </div>
+
+            <!-- ডেস্কটপ নেভ -->
+            <nav class="desktop">
+                <a href="index.html" class="active">হোম</a>
+                <a href="courses.html">কোর্স</a>
+                <a href="about.html">অ্যাবাউট</a>
+            </nav>
+
+            <!-- হামবার্গার বাটন (মোবাইলের জন্য) -->
+            <button class="hamburger" id="hamburgerBtn" aria-label="মেনু খুলুন">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+<main>
+    <!-- মোবাইল সাইড মেনু -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">🏠 হোম</a>
+        <a href="courses.html">📚 কোর্স</a>
+        <a href="about.html">ℹ️ অ্যাবাউট</a>
+    </div>
+
+    <!-- ওভারলে -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ========================================
+    হিরো সেকশন
+    ======================================== -->
+    <section class="hero">
+        <div class="container">
+            <h1>স্বাগতম স্টাডি রুমে</h1>
+            <p>আপনার স্বপ্ন পূরণের যাত্রা শুরু হোক আজই। আমাদের কোর্সের মাধ্যমে সহজে শিখুন, দক্ষ হোন এবং সফল হোন।</p>
+            <a href="courses.html" class="btn-primary">🔍 ব্রাউজ কোর্স</a>
+        </div>
+    </section>
+
+    <!-- ========================================
+    ফিচার্ড কোর্স (হোমপেজে ২-৩টি)
+    ======================================== -->
+    <section class="featured-courses">
+        <div class="container">
+            <h2>🔥 জনপ্রিয় কোর্স</h2>
+            <div id="home-courses" class="course-grid">
+                <!-- JS দিয়ে ডায়নামিক দেখাবে -->
+            </div>
+            <div class="text-center">
+                <a href="courses.html" class="btn-secondary">সব কোর্স দেখুন →</a>
+            </div>
+        </div>
+    </section>
+</main>
+    <!-- ========================================
+    ফুটার
+    ======================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- কলাম ১ -->
+                <div>
+                    <h4>📚 স্টাডি রুম</h4>
+                    <p style="color: rgba(255,255,255,0.6); line-height: 1.8;">
+                        আপনার অনলাইন লার্নিং প্ল্যাটফর্ম। যেকোনো সময়, যেকোনো জায়গা থেকে শিখুন।
+                    </p>
+                </div>
+
+                <!-- কলাম ২ -->
+                <div>
+                    <h4>কুইক লিংক</h4>
+                    <a href="index.html">হোম</a>
+                    <a href="courses.html">কোর্স</a>
+                    <a href="about.html">অ্যাবাউট</a>
+                </div>
+
+                <!-- কলাম ৩ -->
+                <div>
+                    <h4>কোর্স ক্যাটাগরি</h4>
+                    <a href="courses.html?category=acs27">ACS 27</a>
+                    <a href="courses.html?category=acs28">ACS 28</a>
+                    <a href="courses.html?category=admission">এডমিশন</a>
+                    <a href="courses.html?category=engineering">ইঞ্জিনিয়ারিং</a>
+                </div>
+
+                <!-- কলাম ৪ -->
+                <div>
+                    <h4>যোগাযোগ</h4>
+                    <a href="#">📧 support@studyroom.com</a>
+                    <a href="#">📱 +৮৮০ ১৭XXXXXXXX</a>
+                    <a href="#">📍 ঢাকা, বাংলাদেশ</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; ২০২৬ স্টাডি রুম। সব অধিকার সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+    জাভাস্ক্রিপ্ট ফাইল
+    ======================================== -->
+    <script src="js/courses-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

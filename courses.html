@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>সব কোর্স | স্টাডি রুম</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ============================================
+           ৩ স্তরের ফিল্টারের জন্য স্টাইল
+           ============================================ */
+        .filter-section {
+            padding: 20px 0 16px;
+            background: var(--white);
+            border-bottom: 2px solid var(--gray-light);
+            margin-top: 70px;
+            position: relative;
+            z-index: 50;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-group .filter-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            padding-right: 6px;
+            min-width: 70px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--gray-light);
+            border-radius: 50px;
+            background: var(--white);
+            color: var(--gray);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .filter-btn.active-secondary {
+            background: var(--secondary);
+            color: var(--white);
+            border-color: var(--secondary);
+            box-shadow: 0 4px 15px rgba(255, 101, 132, 0.3);
+        }
+
+        .filter-btn.type-free.active {
+            background: #22c55e;
+            border-color: #22c55e;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .filter-divider {
+            width: 2px;
+            height: 30px;
+            background: var(--gray-light);
+            align-self: center;
+        }
+
+        .sub-filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--gray-light);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sub-filter-group.hidden {
+            display: none;
+        }
+
+        .filter-status {
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .filter-status .count-number {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .filter-clear {
+            padding: 6px 16px;
+            border: 2px solid #ef4444;
+            border-radius: 50px;
+            background: transparent;
+            color: #ef4444;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 10px;
+        }
+
+        .filter-clear:hover {
+            background: #ef4444;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .courses-section {
+            padding: 40px 0 80px;
+            background: var(--light);
+        }
+
+        /* ফিল্টার ইনফো ব্যাজ */
+        .filter-info {
+            display: inline-block;
+            background: var(--light);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            color: var(--gray);
+            margin-left: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* রেসপনসিভ */
+        @media (max-width: 768px) {
+            .filter-section {
+                margin-top: 60px;
+                padding: 14px 0 12px;
+            }
+            .filter-group {
+                gap: 6px;
+            }
+            .filter-btn {
+                padding: 5px 12px;
+                font-size: 12px;
+            }
+            .filter-group .filter-label {
+                font-size: 12px;
+                width: 100%;
+                justify-content: center;
+                min-width: auto;
+            }
+            .sub-filter-group {
+                gap: 6px;
+                margin-top: 6px;
+                padding-top: 8px;
+            }
+            .filter-status {
+                font-size: 13px;
+            }
+            .filter-divider {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-section {
+                margin-top: 55px;
+            }
+            .filter-btn {
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+            .filter-status .count-number {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+    হেডার
+    ======================================== -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">📚 স্টাডি রুম</a>
+            </div>
+            <nav class="desktop">
+                <a href="index.html">হোম</a>
+                <a href="courses.html" class="active">কোর্স</a>
+                <a href="about.html">অ্যাবাউট</a>
+            </nav>
+            <button class="hamburger" id="hamburgerBtn" aria-label="মেনু খুলুন">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- মোবাইল সাইড মেনু -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">🏠 হোম</a>
+            <a href="courses.html" class="active">📚 কোর্স</a>
+            <a href="about.html">ℹ️ অ্যাবাউট</a>
+        </div>
+        <div class="overlay" id="overlay"></div>
+
+        <!-- ========================================
+        ফিল্টার সেকশন (৩ স্তরের)
+        ======================================== -->
+        <section class="filter-section" id="filterSection">
+            <div class="container">
+
+                <!-- ১ম স্তর: টাইপ (All, Paid, Free) -->
+                <div class="filter-group" id="typeFilterGroup">
+                    <span class="filter-label">📌 টাইপ:</span>
+                    <div id="typeFilterButtons">
+                        <!-- JS দিয়ে বাটন তৈরি করবে -->
+                    </div>
+                </div>
+
+                <!-- ২য় স্তর: ক্যাটাগরি -->
+                <div class="filter-group" id="categoryFilterGroup">
+                    <span class="filter-label">📂 ক্যাটাগরি:</span>
+                    <div id="categoryFilterButtons">
+                        <!-- JS দিয়ে বাটন তৈরি করবে -->
+                    </div>
+                </div>
+
+                <!-- ৩য় স্তর: সাব-ক্যাটাগরি -->
+                <div class="sub-filter-group hidden" id="subFilterGroup">
+                    <span class="filter-label">📖 সাবজেক্ট:</span>
+                    <div id="subFilterButtons">
+                        <!-- JS দিয়ে বাটন তৈরি করবে -->
+                    </div>
+                </div>
+
+                <!-- ফিল্টার স্ট্যাটাস -->
+                <div class="filter-status" id="filterStatus">
+                    <span class="count-number" id="filterCount">০</span> টি কোর্স পাওয়া গেছে
+                    <span id="filterBadge" style="display:none;">
+                        <button class="filter-clear" onclick="clearAllFilters()">✕ ফিল্টার রিসেট</button>
+                    </span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================
+        কোর্স লিস্ট
+        ======================================== -->
+        <section class="courses-section">
+            <div class="container">
+                <div id="course-container" class="course-grid">
+                    <!-- JS দিয়ে দেখাবে -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================
+    ফুটার
+    ======================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>📚 স্টাডি রুম</h4>
+                    <p style="color: rgba(255,255,255,0.6); line-height: 1.8;">
+                        আপনার অনলাইন লার্নিং প্ল্যাটফর্ম। যেকোনো সময়, যেকোনো জায়গা থেকে শিখুন।
+                    </p>
+                </div>
+                <div>
+                    <h4>কুইক লিংক</h4>
+                    <a href="index.html">হোম</a>
+                    <a href="courses.html">কোর্স</a>
+                    <a href="about.html">অ্যাবাউট</a>
+                </div>
+                <div>
+                    <h4>কোর্স ক্যাটাগরি</h4>
+                    <div id="footerCategories">
+                        <!-- JS দিয়ে ডায়নামিক লিংক তৈরি করবে -->
+                    </div>
+                </div>
+                <div>
+                    <h4>যোগাযোগ</h4>
+                    <a href="#">📧 support@studyroom.com</a>
+                    <a href="#">📱 +৮৮০ ১৭XXXXXXXX</a>
+                    <a href="#">📍 ঢাকা, বাংলাদেশ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ২০২৬ স্টাডি রুম। সব অধিকার সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/courses-data.js"></script>
+    <script src="js/courses.js"></script>
+</body>
+</html>
