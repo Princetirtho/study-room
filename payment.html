@@ -139,7 +139,7 @@
             border-radius: 8px;
         }
 
-        /* ----- ব্যাংক/নগদ ফিল্টার বাটন ----- */
+        /* ----- পেমেন্ট মেথড (শুধু bKash + Nagad) ----- */
         .method-filter {
             display: flex;
             gap: 12px;
@@ -148,33 +148,36 @@
         }
 
         .method-btn {
-            padding: 10px 28px;
+            padding: 12px 28px;
             border: 2px solid var(--gray-light);
             border-radius: 50px;
             background: var(--white);
             color: var(--gray);
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             flex: 1;
-            min-width: 100px;
+            min-width: 120px;
             text-align: center;
         }
 
         .method-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .method-btn.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
         }
 
         .method-btn .icon {
-            margin-right: 6px;
+            margin-right: 8px;
+            font-size: 20px;
         }
 
         /* ----- ফর্ম গ্রুপ ----- */
@@ -311,9 +314,9 @@
             }
 
             .method-btn {
-                padding: 8px 16px;
-                font-size: 13px;
-                min-width: 80px;
+                padding: 10px 20px;
+                font-size: 14px;
+                min-width: 100px;
             }
         }
 
@@ -322,9 +325,9 @@
                 font-size: 20px;
             }
             .method-btn {
-                padding: 6px 12px;
-                font-size: 12px;
-                min-width: 60px;
+                padding: 8px 16px;
+                font-size: 13px;
+                min-width: 80px;
             }
             .payment-card h2 {
                 font-size: 19px;
@@ -404,14 +407,14 @@
                     </div>
 
                     <!-- ============================
-                    🏦 ব্যাংক/নগদ ফিল্টার বাটন
+                    🏦 পেমেন্ট মেথড (শুধু bKash + Nagad)
                     ============================ -->
                     <div class="method-filter" id="methodFilter">
-                        <button class="method-btn" data-method="Nagad">
-                            📱 নগদ
+                        <button class="method-btn active" data-method="bKash">
+                            <span class="icon">📱</span> বিকাশ
                         </button>
-                        <button class="method-btn" data-method="bKash">
-                            📱 বিকাশ
+                        <button class="method-btn" data-method="Nagad">
+                            <span class="icon">📱</span> নগদ
                         </button>
                     </div>
 
@@ -421,7 +424,7 @@
                     <form id="paymentForm" novalidate>
 
                         <!-- পেমেন্ট মেথড (হিডেন) -->
-                        <input type="hidden" id="paymentMethod" value="Bank" />
+                        <input type="hidden" id="paymentMethod" value="bKash" />
 
                         <!-- টেলিগ্রাম ইউজারনেম -->
                         <div class="form-group">
