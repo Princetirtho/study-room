@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <style>
         /* ============================================
-           পেমেন্ট পেজের অতিরিক্ত স্টাইল
+           পেমেন্ট পেজের স্টাইল
            ============================================ */
         .payment-section {
             padding: 130px 0 60px;
@@ -24,7 +24,7 @@
             align-items: start;
         }
 
-        /* ----- কোর্স প্রিভিউ কার্ড ----- */
+        /* ----- কোর্স প্রিভিউ ----- */
         .course-preview {
             background: white;
             border-radius: var(--radius);
@@ -76,11 +76,58 @@
             border-radius: 50px;
         }
 
-        .course-preview .preview-body .price-large {
+        /* ----- দামের সেকশন (কুপন সহ) ----- */
+        .price-box {
+            background: var(--light);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            font-size: 15px;
+        }
+
+        .price-row.original {
+            color: var(--gray);
+        }
+
+        .price-row.original .old-price {
+            text-decoration: line-through;
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        .price-row.discount {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .price-row.total {
+            border-top: 2px dashed var(--gray-light);
+            padding-top: 10px;
+            margin-top: 6px;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .price-large {
             font-size: 26px;
             font-weight: 800;
             color: var(--primary);
             margin: 10px 0;
+        }
+
+        .price-large.discounted {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 18px;
+            margin-bottom: 4px;
         }
 
         .course-preview .preview-body .description {
@@ -109,7 +156,7 @@
             margin-bottom: 20px;
         }
 
-        /* ----- পেমেন্ট নম্বর (বড় ফন্টে) ----- */
+        /* ----- পেমেন্ট নম্বর ----- */
         .payment-number-box {
             background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
             border: 2px dashed var(--primary);
@@ -139,7 +186,7 @@
             border-radius: 8px;
         }
 
-        /* ----- পেমেন্ট মেথড (শুধু bKash + Nagad) ----- */
+        /* ----- পেমেন্ট মেথড ----- */
         .method-filter {
             display: flex;
             gap: 12px;
@@ -148,36 +195,180 @@
         }
 
         .method-btn {
-            padding: 12px 28px;
+            padding: 10px 28px;
             border: 2px solid var(--gray-light);
             border-radius: 50px;
             background: var(--white);
             color: var(--gray);
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
             text-align: center;
         }
 
         .method-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
-            transform: translateY(-2px);
         }
 
         .method-btn.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
         }
 
         .method-btn .icon {
-            margin-right: 8px;
-            font-size: 20px;
+            margin-right: 6px;
+        }
+
+        /* ----- কুপন সেকশন ----- */
+        .coupon-section {
+            background: #FFF9E6;
+            border: 2px dashed #FFC857;
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+
+        .coupon-section .coupon-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .coupon-input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .coupon-input-group input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .coupon-input-group input:focus {
+            border-color: #FFC857;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255, 200, 87, 0.15);
+        }
+
+        .coupon-input-group input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+        }
+
+        .coupon-input-group button {
+            padding: 10px 20px;
+            background: #FFC857;
+            color: var(--dark);
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .coupon-input-group button:hover {
+            background: #FFB830;
+            transform: translateY(-2px);
+        }
+
+        .coupon-input-group button:disabled {
+            background: var(--gray-light);
+            color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .coupon-message {
+            font-size: 13px;
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .coupon-message.success {
+            display: block;
+            background: #DCFCE7;
+            color: #166534;
+            border: 1px solid #22c55e;
+        }
+
+        .coupon-message.error {
+            display: block;
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 1px solid #ef4444;
+        }
+
+        .coupon-applied {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #DCFCE7;
+            border: 2px solid #22c55e;
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin-bottom: 18px;
+        }
+
+        .coupon-applied .info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .coupon-applied .info .icon {
+            font-size: 24px;
+        }
+
+        .coupon-applied .info .text h4 {
+            font-size: 14px;
+            color: #166534;
+            font-weight: 700;
+        }
+
+        .coupon-applied .info .text p {
+            font-size: 12px;
+            color: #15803D;
+            margin: 0;
+        }
+
+        .coupon-applied .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .coupon-applied .remove-btn:hover {
+            background: #DC2626;
+            transform: scale(1.1);
         }
 
         /* ----- ফর্ম গ্রুপ ----- */
@@ -216,8 +407,7 @@
             box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
         }
 
-        .form-group input.error,
-        .form-group select.error {
+        .form-group input.error {
             border-color: #ef4444;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
         }
@@ -296,27 +486,22 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-
             .course-preview {
                 position: static;
             }
-
             .course-preview img {
                 height: 180px;
             }
-
             .payment-card {
                 padding: 20px;
             }
-
             .payment-number-box .number {
                 font-size: 24px;
             }
-
             .method-btn {
-                padding: 10px 20px;
-                font-size: 14px;
-                min-width: 100px;
+                padding: 8px 16px;
+                font-size: 13px;
+                min-width: 80px;
             }
         }
 
@@ -325,12 +510,15 @@
                 font-size: 20px;
             }
             .method-btn {
-                padding: 8px 16px;
-                font-size: 13px;
-                min-width: 80px;
+                padding: 6px 12px;
+                font-size: 12px;
+                min-width: 60px;
             }
             .payment-card h2 {
                 font-size: 19px;
+            }
+            .coupon-input-group {
+                flex-direction: column;
             }
         }
 
@@ -388,7 +576,7 @@
                 বাম দিকে: কোর্স প্রিভিউ
                 ============================ -->
                 <div class="course-preview" id="coursePreview">
-                    <!-- JS দিয়ে দেখাবে -->
+                    <!-- JS দিয়ে দেখাবে -->
                 </div>
 
                 <!-- ============================
@@ -398,17 +586,13 @@
                     <h2>💳 পেমেন্ট করুন</h2>
                     <p class="subtitle">নিচের তথ্য পূরণ করে অ্যাডমিনকে অনুরোধ করুন</p>
 
-                    <!-- ============================
-                    📞 পেমেন্ট নম্বর (বড় ফন্টে)
-                    ============================ -->
+                    <!-- 📞 পেমেন্ট নম্বর -->
                     <div class="payment-number-box">
                         <div class="label">📞 পেমেন্ট করতে এই নম্বরে সেন্ড মানি করুন</div>
                         <div class="number"><span>01703238035</span></div>
                     </div>
 
-                    <!-- ============================
-                    🏦 পেমেন্ট মেথড (শুধু bKash + Nagad)
-                    ============================ -->
+                    <!-- 🏦 পেমেন্ট মেথড (bKash + Nagad) -->
                     <div class="method-filter" id="methodFilter">
                         <button class="method-btn active" data-method="bKash">
                             <span class="icon">📱</span> বিকাশ
@@ -416,6 +600,28 @@
                         <button class="method-btn" data-method="Nagad">
                             <span class="icon">📱</span> নগদ
                         </button>
+                    </div>
+
+                    <!-- 🎟️ কুপন সেকশন -->
+                    <div class="coupon-section" id="couponSection">
+                        <div class="coupon-label">🎟️ কুপন কোড আছে?</div>
+                        <div class="coupon-input-group">
+                            <input type="text" id="couponInput" placeholder="কুপন কোড লিখুন" />
+                            <button type="button" id="applyCouponBtn">প্রয়োগ করুন</button>
+                        </div>
+                        <div class="coupon-message" id="couponMessage"></div>
+                    </div>
+
+                    <!-- কুপন প্রয়োগ হলে দেখাবে -->
+                    <div class="coupon-applied" id="couponApplied" style="display:none;">
+                        <div class="info">
+                            <div class="icon">🎟️</div>
+                            <div class="text">
+                                <h4 id="appliedCouponCode">STUDY20</h4>
+                                <p id="appliedCouponDiscount">২০% ছাড় প্রয়োগ হয়েছে</p>
+                            </div>
+                        </div>
+                        <button type="button" class="remove-btn" id="removeCouponBtn">✕</button>
                     </div>
 
                     <!-- ============================
@@ -431,7 +637,7 @@
                             <label for="tgUsername">📱 টেলিগ্রাম ইউজারনেম <span class="required">*</span></label>
                             <input type="text" id="tgUsername" placeholder="@your_username" />
                             <div class="helper">অ্যাডমিন আপনাকে এই ইউজারনেমে যোগাযোগ করবেন</div>
-                            <div class="error-text" id="tgUsernameError">ইউজারনেম অবশ্যই @ দিয়ে শুরু হতে হবে</div>
+                            <div class="error-text" id="tgUsernameError">ইউজারনেম অবশ্যই @ দিয়ে শুরু হতে হবে</div>
                         </div>
 
                         <!-- সেন্ডার নম্বর -->
@@ -477,7 +683,7 @@
                 <div>
                     <h4>📚 স্টাডি রুম</h4>
                     <p style="color: rgba(255,255,255,0.6); line-height: 1.8;">
-                        আপনার অনলাইন লার্নিং প্ল্যাটফর্ম। যেকোনো সময়, যেকোনো জায়গা থেকে শিখুন।
+                        আপনার অনলাইন লার্নিং প্ল্যাটফর্ম। যেকোনো সময়, যেকোনো জায়গা থেকে শিখুন।
                     </p>
                 </div>
                 <div>
@@ -506,4 +712,4 @@
     <script src="js/courses-data.js"></script>
     <script src="js/payment.js"></script>
 </body>
-</html>
+    </html>
