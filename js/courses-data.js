@@ -1123,4 +1123,72 @@ const coursesData = [
     }
 ];
 
+
+
+
+
+
+
+
+
+
+
+
+// 🎟️ কুপন কোড লিস্ট
+// ============================================
+
+const couponsData = [
+    // ===== উদাহরণ ১: নির্দিষ্ট একাধিক কোর্সে % ছাড় =====
+    {
+        code: 'PHY20',
+        discount: 20,                    // ২০% ছাড়
+        type: 'percentage',              // 'percentage' বা 'fixed'
+        courseIds: [2],   // 👈 এই কোর্স আইডিগুলোতে
+        maxUses: 100,
+        usedCount: 0,
+        expiryDate: '2026-12-31',
+        active: true
+    },
+    
+    // ===== উদাহরণ ২: শুধু একটি কোর্সে ১০০% ছাড় =====
+  /*  {
+        code: 'FREEACS',
+        discount: 100,
+        type: 'percentage',
+        courseIds: [1],                  // 👈 শুধু ID 1
+        maxUses: 5,
+        usedCount: 0,
+        expiryDate: '2026-03-31',
+        active: true
+    },
+    
+    // ===== উদাহরণ ৩: নির্দিষ্ট কোর্সে ফিক্সড ছাড় =====
+    {
+        code: 'SAVE50',
+        discount: 50,                    // ৫০ টাকা ছাড়
+        type: 'fixed',
+        courseIds: [57, 58, 59, 60],     // 👈 শুধু ACS 26 এডমিশন
+        maxUses: 50,
+        usedCount: 0,
+        expiryDate: '2026-06-30',
+        active: true
+    },
+    
+    // ===== উদাহরণ ৪: সব কোর্সে =====
+    {
+        code: 'WELCOME10',
+        discount: 10,
+        type: 'percentage',
+        courseIds: ['all'],              // 👈 সব কোর্সে
+        maxUses: 1000,
+        usedCount: 0,
+        expiryDate: '2026-12-31',
+        active: true
+    }*/
+];
+
+
+
+
+
 console.log('✅ Total Courses Loaded:', coursesData.length);
