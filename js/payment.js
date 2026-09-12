@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `📅 *তারিখ:* ${new Date().toLocaleString('bn-BD')}`;
 
             // টেলিগ্রামে পাঠান
-            const botUsername = 'STUDY_ROOM_MY_bot'; // 👈 আপনার বট ইউজারনেম
+            const botUsername = 'StudyCartBot'; // 👈 আপনার বট ইউজারনেম
             const tgLink = `https://t.me/${botUsername}?text=${encodeURIComponent(message)}`;
             window.open(tgLink, '_blank');
 
